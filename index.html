@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FrankyPhoto</title>
 <meta name="description" content="FrankyPhoto · Fotografía de deportes y eventos al aire libre con luz natural.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="img/icono-180.png">
 <meta property="og:title" content="FrankyPhoto">
 <meta property="og:description" content="Fotografía de deportes y eventos al aire libre con luz natural.">
 <meta property="og:image" content="img/portada.jpg">
@@ -39,10 +41,11 @@ main{max-width:980px;margin:0 auto;padding:10px 16px 50px}
 section{padding:46px 0;border-bottom:1px solid var(--line)}
 h2{font-size:1.7rem;margin:0 0 16px}
 .about{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:center}
-.about figure{margin:0}.about img{width:100%;display:block}
-.back{text-align:center;margin:0 0 10px;font-size:clamp(2.4rem,7vw,3.8rem);font-weight:900;letter-spacing:4px;line-height:1;color:var(--accent2);text-shadow:0 3px 10px rgba(0,55,166,.6)}
+.about figure{margin:0;container-type:inline-size}
+.about>div:first-child{container-type:inline-size}.about img{width:100%;display:block}
+.back{text-align:center;margin:0 0 10px;font-size:12cqw;font-weight:900;letter-spacing:4px;line-height:1;color:var(--accent2);text-shadow:0 3px 10px rgba(0,55,166,.6)}
 .story p{margin:0 0 14px}.more{display:inline-block;margin-top:8px;font-weight:700}
-.nick{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:40px 12px 80px;text-align:center;font-size:clamp(2.5rem,6.8vw,3.8rem);line-height:1.1;font-weight:900;font-style:italic;color:var(--accent2);-webkit-text-stroke:1px #fff;text-shadow:0 2px 8px rgba(0,0,0,.8);background:linear-gradient(transparent,rgba(0,55,166,.55))}
+.nick{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:40px 12px 80px;text-align:center;font-size:8cqw;white-space:nowrap;line-height:1.1;font-weight:900;font-style:italic;color:var(--accent2);-webkit-text-stroke:1px #fff;text-shadow:0 2px 8px rgba(0,0,0,.8);background:linear-gradient(transparent,rgba(0,55,166,.55))}
 @media(max-width:720px){.about{grid-template-columns:1fr}nav{display:none}}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;font-weight:600}
