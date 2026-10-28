@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrankyPhoto</title>
+<meta name="description" content="FrankyPhoto · Fotografía de deportes y eventos al aire libre con luz natural.">
+<meta property="og:title" content="FrankyPhoto">
+<meta property="og:description" content="Fotografía de deportes y eventos al aire libre con luz natural.">
+<meta property="og:image" content="img/portada.jpg">
+<style>
+:root{--bg:#0e1013;--card:#171a1f;--line:#262a31;--text:#f3f3f3;--muted:#a3a9b3;--accent:#0037A6;--accent2:#3D74DB;--sheen:linear-gradient(135deg,#002E95 0%,#0037A6 45%,#2A5FC4 55%,#0037A6 70%,#002E95 100%)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent2)}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+@media(min-width:1600px){body{font-size:20px}main{max-width:1200px}}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:rgba(14,16,19,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--text)}
+.logo span{color:var(--accent2)}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--text)}
+select{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.95rem}
+.hero{text-align:center;padding:36px 16px 50px}
+.frame{position:relative;border-radius:14px;overflow:hidden}
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:14px;box-shadow:inset 0 0 22px 6px rgba(0,55,166,.9)}
+.cover{width:720px;max-width:100%;margin:0 auto 96px;position:relative}
+.cover .frame img{width:100%;display:block}
+.avatar{position:absolute;left:50%;bottom:-78px;transform:translateX(-50%);width:150px;height:150px;border-radius:50%;padding:6px;background:var(--bg);border:7px solid var(--accent);box-shadow:0 0 0 2px var(--accent2),0 6px 18px rgba(0,0,0,.6);object-fit:cover;z-index:2}
+.hero h1{font-size:clamp(2.6rem,9vw,4.8rem);margin:0;letter-spacing:-2px}
+.hero h1 span{color:var(--accent2)}
+.hero p{font-size:1.15rem;max-width:600px;margin:10px auto 26px;color:#e3e3e3}
+.btn{display:inline-block;background:var(--sheen);color:#fff;font-weight:700;padding:13px 24px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-size:1rem}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+main{max-width:980px;margin:0 auto;padding:10px 16px 50px}
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+h2{font-size:1.7rem;margin:0 0 16px}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:center}
+.about figure{margin:0}.about img{width:100%;display:block}
+.back{text-align:center;margin:0 0 10px;font-size:clamp(2.4rem,7vw,3.8rem);font-weight:900;letter-spacing:4px;line-height:1;color:var(--accent2);text-shadow:0 3px 10px rgba(0,55,166,.6)}
+.story p{margin:0 0 14px}.more{display:inline-block;margin-top:8px;font-weight:700}
+.nick{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:40px 12px 80px;text-align:center;font-size:clamp(2.5rem,6.8vw,3.8rem);line-height:1.1;font-weight:900;font-style:italic;color:var(--accent2);-webkit-text-stroke:1px #fff;text-shadow:0 2px 8px rgba(0,0,0,.8);background:linear-gradient(transparent,rgba(0,55,166,.55))}
+@media(max-width:720px){.about{grid-template-columns:1fr}nav{display:none}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;font-weight:600}
+.note{color:var(--muted);margin-top:16px}
+.plat{display:flex;flex-direction:column;gap:10px}.plat b{font-size:1.2rem}.plat span{color:var(--muted);font-weight:400}.plat .btn{text-align:center;margin-top:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.grid img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px;cursor:pointer;display:block}
+h3{margin:22px 0 10px;color:var(--accent2)}
+.evs{display:grid;gap:8px}.ev{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.ev time{font-weight:800;color:var(--accent2);min-width:96px}.ev small{color:var(--muted);display:block}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+form .full{grid-column:1/-1}
+@media(max-width:720px){form{grid-template-columns:1fr}}
+label{font-size:.9rem;color:var(--muted);display:block;margin-bottom:4px}
+input,textarea{width:100%;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit}
+textarea{min-height:120px}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:50;padding:16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:72vh;border-radius:8px}
+.lb .acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.lb .acts a,.lb .acts button{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 14px;text-decoration:none;font:inherit;cursor:pointer}
+.lb .x{position:absolute;top:12px;right:16px;font-size:2rem;background:none;border:0;color:#fff;cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding:28px 16px}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#">Franky<span>Photo</span></a>
+  <nav>
+    <a href="#about" data-i="nav_about"></a>
+    <a href="#story" data-i="story_h"></a>
+    <a href="#services" data-i="nav_services"></a>
+    <a href="#events" data-i="nav_events"></a>
+    <a href="#gallery" data-i="nav_gallery"></a>
+    <a href="#quote" data-i="nav_quote"></a>
+  </nav>
+  <select id="lang" aria-label="Language">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+    <option value="pt">Português (BR)</option>
+    <option value="ru">Русский</option>
+    <option value="de">Deutsch</option>
+    <option value="fr">Français</option>
+    <option value="it">Italiano</option>
+    <option value="pl">Polski</option>
+    <option value="ro">Română</option>
+    <option value="nl">Nederlands</option>
+  </select>
+</header>
+
+<div class="hero">
+  <div class="cover"><div class="frame"><img src="img/portada.jpg" alt="Roque Nublo y Teide"></div><img class="avatar" src="img/perfil.jpg" alt="Franky"></div>
+  <h1>Franky<span>Photo</span></h1>
+  <p data-i="hero_sub"></p>
+  <a class="btn" href="#find" data-i="hero_btn"></a>
+</div>
+
+<main>
+  <section id="about" class="about">
+    <div><div class="back" data-i="back"></div><figure class="frame"><img src="img/motero.jpg" alt="Franky, el niño de la curva"><figcaption class="nick">«El niño de la curva»</figcaption></figure></div>
+    <div><h2 data-i="about_h"></h2><p data-i="about_p"></p><a class="more" href="#story" data-i="story_link"></a></div>
+  </section>
+
+  <section id="services">
+    <h2 data-i="serv_h"></h2>
+    <div class="cards">
+      <div class="card" data-i="s1"></div><div class="card" data-i="s2"></div>
+      <div class="card" data-i="s3"></div><div class="card" data-i="s4"></div>
+    </div>
+    <p class="note" data-i="serv_note"></p>
+  </section>
+
+  <section id="find">
+    <h2 data-i="buy_h"></h2>
+    <p data-i="buy_p"></p>
+    <div class="cards" id="plats"></div>
+    <p class="note" data-i="find_unsure"></p>
+  </section>
+
+  <section id="events">
+    <h2 data-i="ev_h"></h2>
+    <h3 data-i="ev_next"></h3><div class="evs" id="ev_next"></div>
+    <h3 data-i="ev_done"></h3><div class="evs" id="ev_done"></div>
+  </section>
+
+  <section id="gallery">
+    <h2 data-i="gal_h"></h2>
+    <p class="note" data-i="gal_p"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="quote">
+    <h2 data-i="quote_h"></h2>
+    <p data-i="quote_p"></p>
+    <form id="form">
+      <div><label data-i="f_name"></label><input name="name" required></div>
+      <div><label data-i="f_email"></label><input name="email" type="email" required></div>
+      <div><label data-i="f_type"></label><input name="type"></div>
+      <div><label data-i="f_date"></label><input name="date"></div>
+      <div class="full"><label data-i="f_place"></label><input name="place"></div>
+      <div class="full"><label data-i="f_msg"></label><textarea name="msg"></textarea></div>
+      <div class="full"><button class="btn" type="submit" data-i="f_send"></button>
+      <p class="note" data-i="f_note"></p></div>
+    </form>
+  </section>
+
+  <section id="policy">
+    <h2 data-i="ref_h"></h2>
+    <p data-i="ref_p"></p>
+    <h2 data-i="contact_h" style="margin-top:28px"></h2>
+    <p>Email: <a href="mailto:franchumc@gmail.com">franchumc@gmail.com</a></p>
+    <!-- REDES: para añadir otra red, copia la línea del enlace y cambia la dirección y el nombre -->
+    <h2 data-i="social_btn" style="margin-top:28px"></h2>
+    <div class="socials">
+      <a class="btn ghost" href="https://www.instagram.com/francisco.medina.castellano/" target="_blank" rel="noopener">Instagram · @francisco.medina.castellano</a>
+    </div>
+  </section>
+  <section id="story" class="story">
+    <h2 data-i="story_h"></h2>
+    <p data-i="st1"></p><p data-i="st2"></p><p data-i="st3"></p>
+  </section>
+</main>
+
+<footer>© <span id="y"></span> FrankyPhoto · Francisco Medina Castellano</footer>
+
+<div class="lb" id="lb">
+  <button class="x" id="lbx" aria-label="close">×</button>
+  <img id="lbimg" alt="">
+  <div class="acts">
+    <a id="sh_fb" target="_blank" rel="noopener">Facebook</a>
+    <a id="sh_wa" target="_blank" rel="noopener">WhatsApp</a>
+    <a id="sh_x" target="_blank" rel="noopener">X</a>
+    <a id="sh_pin" target="_blank" rel="noopener">Pinterest</a>
+    <a id="sh_dl" download data-i="dl"></a>
+    <button id="sh_cp" data-i="copy"></button>
+  </div>
+</div>
+
+<script>
+const T={
+es:{nav_about:"Quién soy",nav_services:"Servicios",nav_gallery:"Tablón",nav_quote:"Presupuesto",
+hero_sub:"Fotografía de deportes y eventos al aire libre, con luz natural.",hero_btn:"Ver fotos a la venta",
+about_h:"Quién soy",about_p:"Soy Franky, fotógrafo de deportes y eventos al aire libre. Me formé en el mundo del motor, donde me conocían como \"el niño de la curva\" por mis fotos a ras de suelo, desde dentro de la cuneta en plena curva. Hoy fotografío carreras, surf, motor y todo lo que se mueva con luz natural. Vivo en Gran Canaria y acepto encargos fuera de la isla, con condiciones negociables y presupuesto aprobado de antemano.",
+serv_h:"Qué fotografío",s1:"Carreras y competiciones",s2:"Surf y deportes acuáticos",s3:"Motor",s4:"Eventos al aire libre",
+serv_note:"Trabajo en exterior y con luz natural. No realizo bodas, bautizos ni comuniones, ni fotografía de estudio.",
+buy_h:"Compra tus fotos",buy_p:"Las fotos de los eventos se venden en Lumepic, con pago seguro procesado por Stripe. El precio aparece en cada álbum y la entrega es digital e inmediata.",
+gal_h:"Tablón de eventos",gal_p:"Imágenes de los últimos eventos que he cubierto.",gal_empty:"Muy pronto habrá fotos aquí.",
+quote_h:"Pide presupuesto",quote_p:"Cuéntame tu evento o proyecto y te respondo con un presupuesto sin compromiso.",
+f_name:"Nombre",f_email:"Email",f_type:"Tipo de evento",f_date:"Fecha",f_place:"Lugar",f_msg:"Mensaje",f_send:"Enviar consulta",f_note:"Al enviar se abrirá tu correo con el mensaje ya preparado.",
+ref_h:"Política de devoluciones",ref_p:"Al tratarse de contenido digital entregado al momento, no se admiten devoluciones una vez descargada la foto, salvo que el archivo sea defectuoso, no se haya entregado o no corresponda con la foto comprada. En esos casos, escríbeme y lo soluciono o devuelvo el importe.",
+contact_h:"Contacto",dl:"Descargar",copy:"Copiar enlace",copied:"¡Copiado!"},
+en:{nav_about:"About",nav_services:"Services",nav_gallery:"Gallery",nav_quote:"Get a quote",
+hero_sub:"Sports and outdoor event photography, in natural light.",hero_btn:"See photos for sale",
+about_h:"About me",about_p:"I'm Franky, a sports and outdoor event photographer. I grew up in the motor world, where people knew me as \"el niño de la curva\" (the curve kid) for my ground-level shots taken from inside the roadside ditch, right in the middle of the bend. Today I shoot races, surf, motorsport and anything that moves, in natural light. I live in Gran Canaria and accept jobs off the island, with negotiable conditions and a quote approved in advance.",
+serv_h:"What I shoot",s1:"Races and competitions",s2:"Surf and water sports",s3:"Motorsport",s4:"Outdoor events",
+serv_note:"I work outdoors with natural light. I don't do weddings, baptisms, communions or studio photography.",
+buy_h:"Buy your photos",buy_p:"Event photos are sold on Lumepic, with secure payment processed by Stripe. Prices are shown in each album and delivery is instant and digital.",
+gal_h:"Event board",gal_p:"Pictures from the latest events I've covered.",gal_empty:"Photos coming soon.",
+quote_h:"Get a quote",quote_p:"Tell me about your event or project and I'll reply with a no-obligation quote.",
+f_name:"Name",f_email:"Email",f_type:"Type of event",f_date:"Date",f_place:"Location",f_msg:"Message",f_send:"Send enquiry",f_note:"Sending will open your email app with the message ready.",
+ref_h:"Refund policy",ref_p:"As this is digital content delivered instantly, refunds are not accepted once a photo has been downloaded, unless the file is faulty, was not delivered or does not match the photo purchased. In those cases, write to me and I'll fix it or refund you.",
+contact_h:"Contact",dl:"Download",copy:"Copy link",copied:"Copied!"},
+pt:{nav_about:"Sobre mim",nav_services:"Serviços",nav_gallery:"Mural",nav_quote:"Orçamento",
+hero_sub:"Fotografia de esportes e eventos ao ar livre, com luz natural.",hero_btn:"Ver fotos à venda",
+about_h:"Sobre mim",about_p:"Sou o Franky, fotógrafo de esportes e eventos ao ar livre. Me formei no mundo do motor, onde me conheciam como \"el niño de la curva\" (o menino da curva) pelas minhas fotos rente ao chão, tiradas de dentro da valeta, bem no meio da curva. Hoje fotografo corridas, surf, motor e tudo o que se move, com luz natural. Moro em Gran Canaria e aceito trabalhos fora da ilha, com condições negociáveis e orçamento aprovado antecipadamente.",
+serv_h:"O que fotografo",s1:"Corridas e competições",s2:"Surf e esportes aquáticos",s3:"Motor",s4:"Eventos ao ar livre",
+serv_note:"Trabalho ao ar livre e com luz natural. Não faço casamentos, batizados, primeira comunhão nem fotografia de estúdio.",
+buy_h:"Compre suas fotos",buy_p:"As fotos dos eventos são vendidas na Lumepic, com pagamento seguro processado pela Stripe. O preço aparece em cada álbum e a entrega é digital e imediata.",
+gal_h:"Mural de eventos",gal_p:"Imagens dos últimos eventos que cobri.",gal_empty:"Em breve haverá fotos aqui.",
+quote_h:"Peça um orçamento",quote_p:"Conte-me sobre seu evento ou projeto e respondo com um orçamento sem compromisso.",
+f_name:"Nome",f_email:"E-mail",f_type:"Tipo de evento",f_date:"Data",f_place:"Local",f_msg:"Mensagem",f_send:"Enviar consulta",f_note:"Ao enviar, seu e-mail será aberto com a mensagem pronta.",
+ref_h:"Política de reembolso",ref_p:"Por se tratar de conteúdo digital entregue na hora, não há reembolso depois que a foto é baixada, exceto se o arquivo estiver com defeito, não tiver sido entregue ou não corresponder à foto comprada. Nesses casos, escreva-me e resolvo ou devolvo o valor.",
+contact_h:"Contato",dl:"Baixar",copy:"Copiar link",copied:"Copiado!"},
+ru:{nav_about:"Обо мне",nav_services:"Услуги",nav_gallery:"Галерея",nav_quote:"Расчёт стоимости",
+hero_sub:"Фотосъёмка спорта и мероприятий на открытом воздухе при естественном свете.",hero_btn:"Фото на продажу",
+about_h:"Обо мне",about_p:"Меня зовут Франки, я фотографирую спорт и мероприятия на открытом воздухе. Я вырос в мире мотоспорта, где меня знали как \"el niño de la curva\" («парень из поворота») за снимки с уровня земли прямо из кювета в середине поворота. Сегодня я снимаю забеги, сёрфинг, мотоспорт и всё, что движется, при естественном свете. Живу на Гран-Канарии и принимаю заказы за пределами острова на договорных условиях и с заранее согласованной сметой.",
+serv_h:"Что я снимаю",s1:"Забеги и соревнования",s2:"Сёрфинг и водные виды спорта",s3:"Мотоспорт",s4:"Мероприятия на открытом воздухе",
+serv_note:"Работаю на улице при естественном свете. Не снимаю свадьбы, крестины, причастия и не работаю в студии.",
+buy_h:"Купите свои фото",buy_p:"Фото с мероприятий продаются на Lumepic, оплата безопасно проходит через Stripe. Цена указана в каждом альбоме, доставка цифровая и мгновенная.",
+gal_h:"Доска мероприятий",gal_p:"Снимки с последних мероприятий, которые я снимал.",gal_empty:"Скоро здесь появятся фото.",
+quote_h:"Узнать стоимость",quote_p:"Расскажите о вашем мероприятии или проекте, и я пришлю расчёт без обязательств.",
+f_name:"Имя",f_email:"Email",f_type:"Тип мероприятия",f_date:"Дата",f_place:"Место",f_msg:"Сообщение",f_send:"Отправить запрос",f_note:"При отправке откроется ваша почта с готовым письмом.",
+ref_h:"Политика возврата",ref_p:"Так как это цифровой контент, который доставляется сразу, после скачивания фото возврат невозможен, кроме случаев, когда файл повреждён, не был доставлен или не соответствует купленному фото. В этих случаях напишите мне, и я всё исправлю или верну деньги.",
+contact_h:"Контакты",dl:"Скачать",copy:"Копировать ссылку",copied:"Скопировано!"},
+de:{nav_about:"Über mich",nav_services:"Leistungen",nav_gallery:"Pinnwand",nav_quote:"Angebot",
+hero_sub:"Sport- und Outdoor-Eventfotografie mit natürlichem Licht.",hero_btn:"Fotos zum Kauf ansehen",
+about_h:"Über mich",about_p:"Ich bin Franky, Fotograf für Sport und Outdoor-Events. Geprägt hat mich die Motorradszene, wo man mich \"el niño de la curva\" (den Jungen aus der Kurve) nannte – wegen meiner Fotos auf Bodenhöhe, aufgenommen aus dem Straßengraben mitten in der Kurve. Heute fotografiere ich Läufe, Surfen, Motorsport und alles, was sich bewegt, mit natürlichem Licht. Ich lebe auf Gran Canaria und nehme Aufträge außerhalb der Insel an – zu verhandelbaren Bedingungen und mit vorab genehmigtem Angebot.",
+serv_h:"Was ich fotografiere",s1:"Läufe und Wettkämpfe",s2:"Surfen und Wassersport",s3:"Motorsport",s4:"Outdoor-Events",
+serv_note:"Ich arbeite draußen mit natürlichem Licht. Keine Hochzeiten, Taufen, Kommunionen oder Studiofotografie.",
+buy_h:"Kaufe deine Fotos",buy_p:"Die Eventfotos werden über Lumepic verkauft, mit sicherer Zahlung über Stripe. Der Preis steht in jedem Album, die Lieferung erfolgt sofort und digital.",
+gal_h:"Event-Pinnwand",gal_p:"Bilder von den letzten Events, die ich fotografiert habe.",gal_empty:"Hier gibt es bald Fotos.",
+quote_h:"Angebot anfragen",quote_p:"Erzähl mir von deinem Event oder Projekt, und ich antworte mit einem unverbindlichen Angebot.",
+f_name:"Name",f_email:"E-Mail",f_type:"Art des Events",f_date:"Datum",f_place:"Ort",f_msg:"Nachricht",f_send:"Anfrage senden",f_note:"Beim Senden öffnet sich dein E-Mail-Programm mit der fertigen Nachricht.",
+ref_h:"Rückgaberichtlinie",ref_p:"Da es sich um sofort gelieferte digitale Inhalte handelt, ist eine Rückerstattung nach dem Herunterladen nicht möglich, außer die Datei ist fehlerhaft, wurde nicht geliefert oder entspricht nicht dem gekauften Foto. In diesen Fällen schreib mir, und ich löse das Problem oder erstatte den Betrag.",
+contact_h:"Kontakt",dl:"Herunterladen",copy:"Link kopieren",copied:"Kopiert!"},
+fr:{nav_about:"Qui suis-je",nav_services:"Services",nav_gallery:"Galerie",nav_quote:"Devis",
+hero_sub:"Photographie de sport et d'événements en plein air, en lumière naturelle.",hero_btn:"Voir les photos en vente",
+about_h:"Qui suis-je",about_p:"Je suis Franky, photographe de sport et d'événements en plein air. J'ai fait mes armes dans le monde de la moto, où l'on m'appelait \"el niño de la curva\" (le gamin du virage) pour mes photos au ras du sol, prises depuis le fossé, en plein virage. Aujourd'hui, je photographie des courses, du surf, des sports mécaniques et tout ce qui bouge, en lumière naturelle. J'habite à Gran Canaria et j'accepte des missions hors de l'île, avec des conditions négociables et un devis validé à l'avance.",
+serv_h:"Ce que je photographie",s1:"Courses et compétitions",s2:"Surf et sports nautiques",s3:"Sports mécaniques",s4:"Événements en plein air",
+serv_note:"Je travaille en extérieur et en lumière naturelle. Je ne fais ni mariages, ni baptêmes, ni communions, ni photo en studio.",
+buy_h:"Achetez vos photos",buy_p:"Les photos des événements sont vendues sur Lumepic, avec paiement sécurisé par Stripe. Le prix figure dans chaque album et la livraison est numérique et immédiate.",
+gal_h:"Tableau des événements",gal_p:"Images des derniers événements que j'ai couverts.",gal_empty:"Des photos arrivent bientôt.",
+quote_h:"Demander un devis",quote_p:"Parlez-moi de votre événement ou projet et je vous réponds avec un devis sans engagement.",
+f_name:"Nom",f_email:"E-mail",f_type:"Type d'événement",f_date:"Date",f_place:"Lieu",f_msg:"Message",f_send:"Envoyer la demande",f_note:"À l'envoi, votre messagerie s'ouvrira avec le message prêt.",
+ref_h:"Politique de remboursement",ref_p:"S'agissant d'un contenu numérique livré immédiatement, aucun remboursement n'est possible une fois la photo téléchargée, sauf si le fichier est défectueux, n'a pas été livré ou ne correspond pas à la photo achetée. Dans ces cas, écrivez-moi et je règle le problème ou vous rembourse.",
+contact_h:"Contact",dl:"Télécharger",copy:"Copier le lien",copied:"Copié !"},
+it:{nav_about:"Chi sono",nav_services:"Servizi",nav_gallery:"Bacheca",nav_quote:"Preventivo",
+hero_sub:"Fotografia di sport ed eventi all'aperto, con luce naturale.",hero_btn:"Vedi le foto in vendita",
+about_h:"Chi sono",about_p:"Sono Franky, fotografo di sport ed eventi all'aperto. Mi sono formato nel mondo dei motori, dove mi conoscevano come \"el niño de la curva\" (il ragazzo della curva) per le mie foto rasoterra, scattate da dentro il fosso, in piena curva. Oggi fotografo gare, surf, motori e tutto ciò che si muove, con luce naturale. Vivo a Gran Canaria e accetto incarichi fuori dall'isola, con condizioni negoziabili e preventivo approvato in anticipo.",
+serv_h:"Cosa fotografo",s1:"Gare e competizioni",s2:"Surf e sport acquatici",s3:"Motori",s4:"Eventi all'aperto",
+serv_note:"Lavoro all'aperto e con luce naturale. Non faccio matrimoni, battesimi, comunioni né fotografia in studio.",
+buy_h:"Acquista le tue foto",buy_p:"Le foto degli eventi sono in vendita su Lumepic, con pagamento sicuro tramite Stripe. Il prezzo è indicato in ogni album e la consegna è digitale e immediata.",
+gal_h:"Bacheca degli eventi",gal_p:"Immagini degli ultimi eventi che ho seguito.",gal_empty:"Presto ci saranno foto qui.",
+quote_h:"Chiedi un preventivo",quote_p:"Raccontami il tuo evento o progetto e ti rispondo con un preventivo senza impegno.",
+f_name:"Nome",f_email:"Email",f_type:"Tipo di evento",f_date:"Data",f_place:"Luogo",f_msg:"Messaggio",f_send:"Invia richiesta",f_note:"Inviando si aprirà la tua email con il messaggio già pronto.",
+ref_h:"Politica di rimborso",ref_p:"Trattandosi di contenuti digitali consegnati subito, non sono previsti rimborsi dopo il download della foto, salvo che il file sia difettoso, non sia stato consegnato o non corrisponda alla foto acquistata. In questi casi scrivimi e risolvo o ti rimborso.",
+contact_h:"Contatti",dl:"Scarica",copy:"Copia link",copied:"Copiato!"},
+pl:{nav_about:"O mnie",nav_services:"Usługi",nav_gallery:"Tablica",nav_quote:"Wycena",
+hero_sub:"Fotografia sportowa i wydarzeń plenerowych, w naturalnym świetle.",hero_btn:"Zobacz zdjęcia na sprzedaż",
+about_h:"O mnie",about_p:"Jestem Franky, fotograf sportu i wydarzeń plenerowych. Wyrosłem w świecie motocykli, gdzie znano mnie jako \"el niño de la curva\" (chłopak z zakrętu) dzięki zdjęciom robionym z poziomu ziemi, z wnętrza przydrożnego rowu, w samym środku zakrętu. Dziś fotografuję biegi, surfing, motorsport i wszystko, co się rusza, w naturalnym świetle. Mieszkam na Gran Canarii i przyjmuję zlecenia poza wyspą, na warunkach do negocjacji i z wyceną zatwierdzoną z góry.",
+serv_h:"Co fotografuję",s1:"Biegi i zawody",s2:"Surfing i sporty wodne",s3:"Motorsport",s4:"Wydarzenia plenerowe",
+serv_note:"Pracuję w plenerze i w naturalnym świetle. Nie fotografuję ślubów, chrzcin, komunii ani w studiu.",
+buy_h:"Kup swoje zdjęcia",buy_p:"Zdjęcia z wydarzeń są sprzedawane na Lumepic, z bezpieczną płatnością przez Stripe. Cena jest podana w każdym albumie, a dostawa jest cyfrowa i natychmiastowa.",
+gal_h:"Tablica wydarzeń",gal_p:"Zdjęcia z ostatnich wydarzeń, które fotografowałem.",gal_empty:"Wkrótce pojawią się tu zdjęcia.",
+quote_h:"Poproś o wycenę",quote_p:"Opowiedz mi o swoim wydarzeniu lub projekcie, a odpowiem niezobowiązującą wyceną.",
+f_name:"Imię",f_email:"E-mail",f_type:"Rodzaj wydarzenia",f_date:"Data",f_place:"Miejsce",f_msg:"Wiadomość",f_send:"Wyślij zapytanie",f_note:"Po wysłaniu otworzy się Twoja poczta z gotową wiadomością.",
+ref_h:"Zasady zwrotów",ref_p:"Ponieważ są to treści cyfrowe dostarczane od razu, po pobraniu zdjęcia zwroty nie są możliwe, chyba że plik jest wadliwy, nie został dostarczony lub nie odpowiada zakupionemu zdjęciu. W takich przypadkach napisz do mnie, a naprawię problem lub zwrócę pieniądze.",
+contact_h:"Kontakt",dl:"Pobierz",copy:"Kopiuj link",copied:"Skopiowano!"},
+ro:{nav_about:"Despre mine",nav_services:"Servicii",nav_gallery:"Panou",nav_quote:"Ofertă",
+hero_sub:"Fotografie sportivă și de evenimente în aer liber, în lumină naturală.",hero_btn:"Vezi fotografiile de vânzare",
+about_h:"Despre mine",about_p:"Sunt Franky, fotograf de sport și evenimente în aer liber. M-am format în lumea motociclismului, unde eram cunoscut drept \"el niño de la curva\" (băiatul din curbă) pentru fotografiile mele de la nivelul solului, făcute din interiorul șanțului, chiar în mijlocul curbei. Astăzi fotografiez curse, surf, motorsport și tot ce se mișcă, în lumină naturală. Locuiesc în Gran Canaria și accept lucrări în afara insulei, cu condiții negociabile și ofertă aprobată dinainte.",
+serv_h:"Ce fotografiez",s1:"Curse și competiții",s2:"Surf și sporturi nautice",s3:"Motorsport",s4:"Evenimente în aer liber",
+serv_note:"Lucrez în exterior și în lumină naturală. Nu fac nunți, botezuri, comuniuni și nici fotografie de studio.",
+buy_h:"Cumpără-ți fotografiile",buy_p:"Fotografiile de la evenimente se vând pe Lumepic, cu plată securizată prin Stripe. Prețul apare în fiecare album, iar livrarea este digitală și imediată.",
+gal_h:"Panoul evenimentelor",gal_p:"Imagini de la ultimele evenimente pe care le-am fotografiat.",gal_empty:"În curând vor apărea fotografii aici.",
+quote_h:"Cere o ofertă",quote_p:"Povestește-mi despre evenimentul sau proiectul tău și îți răspund cu o ofertă fără obligații.",
+f_name:"Nume",f_email:"E-mail",f_type:"Tipul evenimentului",f_date:"Data",f_place:"Locul",f_msg:"Mesaj",f_send:"Trimite cererea",f_note:"La trimitere se va deschide e-mailul tău cu mesajul pregătit.",
+ref_h:"Politica de rambursare",ref_p:"Fiind conținut digital livrat imediat, nu se acceptă rambursări după descărcarea fotografiei, cu excepția cazului în care fișierul este defect, nu a fost livrat sau nu corespunde fotografiei cumpărate. În aceste cazuri, scrie-mi și rezolv problema sau îți returnez banii.",
+contact_h:"Contact",dl:"Descarcă",copy:"Copiază linkul",copied:"Copiat!"},
+nl:{nav_about:"Over mij",nav_services:"Diensten",nav_gallery:"Prikbord",nav_quote:"Offerte",
+hero_sub:"Sport- en outdoor-evenementfotografie, met natuurlijk licht.",hero_btn:"Bekijk foto's te koop",
+about_h:"Over mij",about_p:"Ik ben Franky, fotograaf van sport en outdoor-evenementen. Ik groeide op in de motorwereld, waar ik bekendstond als \"el niño de la curva\" (de jongen uit de bocht) door mijn foto's vanaf grondniveau, genomen vanuit de berm midden in de bocht. Nu fotografeer ik hardloopwedstrijden, surfen, motorsport en alles wat beweegt, met natuurlijk licht. Ik woon op Gran Canaria en neem opdrachten buiten het eiland aan, met bespreekbare voorwaarden en een vooraf goedgekeurde offerte.",
+serv_h:"Wat ik fotografeer",s1:"Wedstrijden en competities",s2:"Surfen en watersport",s3:"Motorsport",s4:"Outdoor-evenementen",
+serv_note:"Ik werk buiten met natuurlijk licht. Geen bruiloften, dopen, communies of studiofotografie.",
+buy_h:"Koop je foto's",buy_p:"De foto's van evenementen worden verkocht via Lumepic, met veilige betaling via Stripe. De prijs staat bij elk album en de levering is digitaal en direct.",
+gal_h:"Evenementenprikbord",gal_p:"Beelden van de laatste evenementen die ik heb gefotografeerd.",gal_empty:"Binnenkort verschijnen hier foto's.",
+quote_h:"Vraag een offerte aan",quote_p:"Vertel me over je evenement of project en ik stuur je een vrijblijvende offerte.",
+f_name:"Naam",f_email:"E-mail",f_type:"Soort evenement",f_date:"Datum",f_place:"Locatie",f_msg:"Bericht",f_send:"Aanvraag versturen",f_note:"Bij versturen opent je e-mail met het bericht klaar.",
+ref_h:"Retourbeleid",ref_p:"Omdat het om direct geleverde digitale inhoud gaat, is terugbetaling niet mogelijk na het downloaden van de foto, tenzij het bestand defect is, niet is geleverd of niet overeenkomt met de gekochte foto. Stuur me in die gevallen een bericht en ik los het op of betaal je terug.",
+contact_h:"Contact",dl:"Downloaden",copy:"Link kopiëren",copied:"Gekopieerd!"}
+};
+/* PLATAFORMAS DE VENTA: para añadir otra, copia una línea y cambia nombre, tipo y enlace */
+const PLATFORMS=[
+ {name:'Surfmappers',type:'plat_surf',url:'https://banlek.com/franchumc'},
+ {name:'Lumepic',type:'plat_other',url:'https://lumepic.com/photographer/f-medinacastellano-113?utm_source=pps&utm_campaign=f-medinacastellano-113'}
+];
+const N={
+es:{hero_btn:"Encuentra tus fotos",buy_h:"Encuentra y compra tus fotos",buy_p:"Mis fotos se venden en plataformas especializadas con pago seguro. Elige la de tu deporte y sube un selfie: te encuentra en segundos. La entrega es digital e inmediata.",plat_surf:"Surf",plat_other:"Carreras y otros deportes",find_btn:"Buscar con selfie",find_unsure:"¿No sabes en cuál están tus fotos? Prueba en las dos: solo necesitas un selfie."},
+en:{hero_btn:"Find your photos",buy_h:"Find and buy your photos",buy_p:"My photos are sold on specialised platforms with secure payment. Pick the one for your sport and upload a selfie: it finds you in seconds. Delivery is digital and instant.",plat_surf:"Surf",plat_other:"Races and other sports",find_btn:"Search with a selfie",find_unsure:"Not sure where your photos are? Try both: all you need is a selfie."},
+pt:{hero_btn:"Encontre suas fotos",buy_h:"Encontre e compre suas fotos",buy_p:"Minhas fotos são vendidas em plataformas especializadas com pagamento seguro. Escolha a do seu esporte e envie uma selfie: ela te encontra em segundos. A entrega é digital e imediata.",plat_surf:"Surf",plat_other:"Corridas e outros esportes",find_btn:"Buscar com selfie",find_unsure:"Não sabe em qual estão suas fotos? Tente nas duas: só precisa de uma selfie."},
+ru:{hero_btn:"Найти свои фото",buy_h:"Найдите и купите свои фото",buy_p:"Мои фото продаются на специализированных платформах с безопасной оплатой. Выберите платформу для вашего вида спорта и загрузите селфи — она найдёт вас за секунды. Доставка цифровая и мгновенная.",plat_surf:"Сёрфинг",plat_other:"Забеги и другие виды спорта",find_btn:"Искать по селфи",find_unsure:"Не знаете, где ваши фото? Попробуйте обе — нужно только селфи."},
+de:{hero_btn:"Finde deine Fotos",buy_h:"Finde und kaufe deine Fotos",buy_p:"Meine Fotos werden auf spezialisierten Plattformen mit sicherer Zahlung verkauft. Wähle die für deinen Sport und lade ein Selfie hoch: Sie findet dich in Sekunden. Die Lieferung erfolgt sofort und digital.",plat_surf:"Surfen",plat_other:"Läufe und andere Sportarten",find_btn:"Mit Selfie suchen",find_unsure:"Du weißt nicht, wo deine Fotos sind? Probier beide aus – du brauchst nur ein Selfie."},
+fr:{hero_btn:"Trouvez vos photos",buy_h:"Trouvez et achetez vos photos",buy_p:"Mes photos sont vendues sur des plateformes spécialisées avec paiement sécurisé. Choisissez celle de votre sport et envoyez un selfie : elle vous retrouve en quelques secondes. La livraison est numérique et immédiate.",plat_surf:"Surf",plat_other:"Courses et autres sports",find_btn:"Chercher avec un selfie",find_unsure:"Vous ne savez pas où sont vos photos ? Essayez les deux : il suffit d'un selfie."},
+it:{hero_btn:"Trova le tue foto",buy_h:"Trova e acquista le tue foto",buy_p:"Le mie foto sono in vendita su piattaforme specializzate con pagamento sicuro. Scegli quella del tuo sport e carica un selfie: ti trova in pochi secondi. La consegna è digitale e immediata.",plat_surf:"Surf",plat_other:"Gare e altri sport",find_btn:"Cerca con un selfie",find_unsure:"Non sai dove sono le tue foto? Prova in entrambe: basta un selfie."},
+pl:{hero_btn:"Znajdź swoje zdjęcia",buy_h:"Znajdź i kup swoje zdjęcia",buy_p:"Moje zdjęcia są sprzedawane na wyspecjalizowanych platformach z bezpieczną płatnością. Wybierz tę dla swojego sportu i prześlij selfie: znajdzie Cię w kilka sekund. Dostawa jest cyfrowa i natychmiastowa.",plat_surf:"Surfing",plat_other:"Biegi i inne sporty",find_btn:"Szukaj po selfie",find_unsure:"Nie wiesz, gdzie są Twoje zdjęcia? Sprawdź obie – wystarczy selfie."},
+ro:{hero_btn:"Găsește-ți fotografiile",buy_h:"Găsește și cumpără-ți fotografiile",buy_p:"Fotografiile mele se vând pe platforme specializate, cu plată securizată. Alege-o pe cea a sportului tău și încarcă un selfie: te găsește în câteva secunde. Livrarea este digitală și imediată.",plat_surf:"Surf",plat_other:"Curse și alte sporturi",find_btn:"Caută cu un selfie",find_unsure:"Nu știi unde sunt fotografiile tale? Încearcă pe amândouă: îți trebuie doar un selfie."},
+nl:{hero_btn:"Vind je foto's",buy_h:"Vind en koop je foto's",buy_p:"Mijn foto's worden verkocht via gespecialiseerde platforms met veilige betaling. Kies die van jouw sport en upload een selfie: je wordt binnen enkele seconden gevonden. De levering is digitaal en direct.",plat_surf:"Surfen",plat_other:"Wedstrijden en andere sporten",find_btn:"Zoeken met selfie",find_unsure:"Weet je niet waar je foto's staan? Probeer ze allebei: je hebt alleen een selfie nodig."}
+};
+const N2={
+es:{nav_events:"Eventos",nav_gallery:"Fotos",ev_h:"Tablón de eventos",ev_next:"Próximos eventos",ev_done:"Eventos realizados",ev_none:"Por ahora no hay eventos aquí.",gal_h:"Tablón de fotos",gal_p:"Imágenes de ambiente de los eventos que cubro.",serv_note:"Trabajo en exterior y con luz natural. No realizo bodas, bautizos, comuniones ni fotografía de estudio.",social_btn:"Mis redes"},
+en:{nav_events:"Events",nav_gallery:"Photos",ev_h:"Event board",ev_next:"Upcoming events",ev_done:"Past events",ev_none:"No events here yet.",gal_h:"Photo board",gal_p:"Atmosphere shots from the events I cover.",social_btn:"My social media"},
+pt:{nav_events:"Eventos",nav_gallery:"Fotos",ev_h:"Mural de eventos",ev_next:"Próximos eventos",ev_done:"Eventos realizados",ev_none:"Ainda não há eventos aqui.",gal_h:"Mural de fotos",gal_p:"Imagens de ambiente dos eventos que cubro.",social_btn:"Minhas redes"},
+ru:{nav_events:"События",nav_gallery:"Фото",ev_h:"Доска событий",ev_next:"Ближайшие события",ev_done:"Прошедшие события",ev_none:"Пока здесь нет событий.",gal_h:"Фотодоска",gal_p:"Атмосферные снимки с мероприятий, которые я снимаю.",social_btn:"Мои соцсети"},
+de:{nav_events:"Events",nav_gallery:"Fotos",ev_h:"Event-Pinnwand",ev_next:"Kommende Events",ev_done:"Vergangene Events",ev_none:"Noch keine Events.",gal_h:"Foto-Pinnwand",gal_p:"Stimmungsbilder von den Events, die ich fotografiere.",social_btn:"Meine Social Media"},
+fr:{nav_events:"Événements",nav_gallery:"Photos",ev_h:"Tableau des événements",ev_next:"Prochains événements",ev_done:"Événements passés",ev_none:"Aucun événement pour l'instant.",gal_h:"Tableau photo",gal_p:"Photos d'ambiance des événements que je couvre.",social_btn:"Mes réseaux"},
+it:{nav_events:"Eventi",nav_gallery:"Foto",ev_h:"Bacheca degli eventi",ev_next:"Prossimi eventi",ev_done:"Eventi passati",ev_none:"Per ora nessun evento.",gal_h:"Bacheca foto",gal_p:"Foto d'atmosfera degli eventi che seguo.",social_btn:"I miei social"},
+pl:{nav_events:"Wydarzenia",nav_gallery:"Zdjęcia",ev_h:"Tablica wydarzeń",ev_next:"Nadchodzące wydarzenia",ev_done:"Zrealizowane wydarzenia",ev_none:"Na razie brak wydarzeń.",gal_h:"Tablica zdjęć",gal_p:"Klimatyczne zdjęcia z wydarzeń, które fotografuję.",social_btn:"Moje media społecznościowe"},
+ro:{nav_events:"Evenimente",nav_gallery:"Fotografii",ev_h:"Panoul evenimentelor",ev_next:"Evenimente viitoare",ev_done:"Evenimente realizate",ev_none:"Deocamdată nu sunt evenimente.",gal_h:"Panou foto",gal_p:"Imagini de atmosferă de la evenimentele pe care le fotografiez.",social_btn:"Rețelele mele"},
+nl:{nav_events:"Evenementen",nav_gallery:"Foto's",ev_h:"Evenementenbord",ev_next:"Komende evenementen",ev_done:"Afgelopen evenementen",ev_none:"Nog geen evenementen.",gal_h:"Fotoprikbord",gal_p:"Sfeerbeelden van de evenementen die ik fotografeer.",social_btn:"Mijn social media"}
+};
+for(const k in N)Object.assign(T[k],N[k]);for(const k in N2)Object.assign(T[k],N2[k]);
+const N3={
+es:{back:"¡VUELVE!",story_h:"Mi historia",story_link:"Leer mi historia →",
+st1:"Mi historia con la fotografía empezó de niño, con una Petri Racer que todavía conservo. No sabía usarla y muchas fotos salían mal, pero no paraba de disparar. Después llegaron las cámaras de carrete automáticas y, con ellas, mis primeras fotos de verdad: ahí supe que esto lo llevaba dentro.",
+st2:"Con los años entré en el mundo motero. Las cámaras compactas no aguantaban el ritmo ni me dejaban hacer las fotos que tenía en la cabeza, así que di el salto a una Canon 450D y, más tarde, a la 7D con el 28-300 L. Entre 2008 y 2012 me hice un nombre en la escena motera canaria fotografiando las motos desde dentro de la cuneta, tumbado a ras de suelo en plena curva. Una técnica arriesgada, no sin algún susto, que me valió el apodo de «el niño de la curva».",
+st3:"En 2014 la vida me llevó por otros caminos y me despedí de mi equipo. Años después, buscando una cámara de segunda mano, me pusieron en las manos una 7D… y la reconocí: era la mía, con el soporte que yo mismo le había pegado en la pantalla. Lo tomé como una señal. Hoy he vuelto a lo que siempre me ha apasionado: congelar la acción al aire libre, con luz natural."},
+en:{back:"HE'S BACK!",story_h:"My story",story_link:"Read my story →",
+st1:"My story with photography began as a kid, with a Petri Racer I still keep. I didn't know how to use it and many shots came out wrong, but I never stopped shooting. Then came automatic film cameras and, with them, my first real photos: that's when I knew this was in my blood.",
+st2:"Over the years I got into the motorcycle world. Compact cameras couldn't keep up or let me take the pictures I had in mind, so I moved up to a Canon 450D and later to the 7D with the 28-300 L. Between 2008 and 2012 I made a name for myself in the Canary Islands biker scene by shooting bikes from inside the roadside ditch, lying at ground level in the middle of the bend. A risky technique, with the odd scare along the way, that earned me the nickname \"el niño de la curva\" (the curve kid).",
+st3:"In 2014 life took me down other roads and I said goodbye to my gear. Years later, looking for a second-hand camera, someone handed me a 7D… and I recognised it: it was mine, with the mount I had glued onto the screen myself. I took it as a sign. Today I'm back doing what I've always loved: freezing the action outdoors, in natural light."},
+pt:{back:"VOLTOU!",story_h:"Minha história",story_link:"Ler minha história →",
+st1:"Minha história com a fotografia começou na infância, com uma Petri Racer que ainda guardo. Eu não sabia usá-la e muitas fotos saíam ruins, mas não parava de fotografar. Depois vieram as câmeras automáticas de filme e, com elas, minhas primeiras fotos de verdade: ali eu soube que isso estava no meu sangue.",
+st2:"Com os anos, entrei no mundo das motos. As câmeras compactas não aguentavam o ritmo nem me deixavam fazer as fotos que eu imaginava, então dei o salto para uma Canon 450D e, depois, para a 7D com a 28-300 L. Entre 2008 e 2012 fiz meu nome na cena motociclística das Canárias fotografando as motos de dentro da valeta, deitado rente ao chão, bem no meio da curva. Uma técnica arriscada, com alguns sustos pelo caminho, que me rendeu o apelido \"el niño de la curva\" (o menino da curva).",
+st3:"Em 2014 a vida me levou por outros caminhos e me despedi do meu equipamento. Anos depois, procurando uma câmera usada, me colocaram uma 7D nas mãos… e eu a reconheci: era a minha, com o suporte que eu mesmo tinha colado na tela. Encarei como um sinal. Hoje voltei ao que sempre me apaixonou: congelar a ação ao ar livre, com luz natural."},
+ru:{back:"ВЕРНУЛСЯ!",story_h:"Моя история",story_link:"Читать мою историю →",
+st1:"Моя история с фотографией началась в детстве, с камеры Petri Racer, которую я храню до сих пор. Я не умел ей пользоваться, и многие снимки выходили неудачными, но я не переставал снимать. Потом появились автоматические плёночные камеры, а с ними — мои первые настоящие фотографии: тогда я понял, что это у меня в крови.",
+st2:"Со временем я попал в мир мотоциклов. Компактные камеры не выдерживали темпа и не позволяли делать снимки, которые я задумывал, поэтому я перешёл на Canon 450D, а затем на 7D с объективом 28-300 L. С 2008 по 2012 год я стал известен в мотосообществе Канарских островов благодаря снимкам мотоциклов из кювета: я лежал на уровне земли прямо в середине поворота. Рискованная техника, не обошлось и без испугов, но именно она принесла мне прозвище \"el niño de la curva\" («парень из поворота»).",
+st3:"В 2014 году жизнь повела меня другими путями, и я расстался со своей техникой. Спустя годы, подыскивая подержанную камеру, я взял в руки 7D… и узнал её: это была моя, с креплением, которое я сам приклеил к экрану. Я принял это как знак. Сегодня я вернулся к тому, что всегда любил: ловить движение на открытом воздухе при естественном свете."},
+de:{back:"IST ZURÜCK!",story_h:"Meine Geschichte",story_link:"Meine Geschichte lesen →",
+st1:"Meine Geschichte mit der Fotografie begann als Kind, mit einer Petri Racer, die ich noch heute besitze. Ich wusste nicht, wie man sie bedient, und viele Bilder misslangen, aber ich hörte nie auf zu fotografieren. Dann kamen die automatischen Filmkameras und mit ihnen meine ersten richtig guten Fotos: Da wusste ich, dass mir das im Blut liegt.",
+st2:"Mit den Jahren kam ich in die Motorradszene. Kompaktkameras hielten nicht mit und ließen mich nicht die Bilder machen, die ich im Kopf hatte, also stieg ich auf eine Canon 450D um und später auf die 7D mit dem 28-300 L. Zwischen 2008 und 2012 machte ich mir in der kanarischen Motorradszene einen Namen, indem ich die Maschinen aus dem Straßengraben fotografierte – auf Bodenhöhe liegend, mitten in der Kurve. Eine riskante Technik, nicht ohne den einen oder anderen Schreck, die mir den Spitznamen \"el niño de la curva\" (der Junge aus der Kurve) einbrachte.",
+st3:"2014 führte mich das Leben auf andere Wege, und ich verabschiedete mich von meiner Ausrüstung. Jahre später, auf der Suche nach einer gebrauchten Kamera, drückte man mir eine 7D in die Hand … und ich erkannte sie: Es war meine, mit der Halterung, die ich selbst auf den Bildschirm geklebt hatte. Ich nahm es als Zeichen. Heute bin ich zurück bei dem, was ich schon immer geliebt habe: Action draußen festhalten, mit natürlichem Licht."},
+fr:{back:"EST DE RETOUR !",story_h:"Mon histoire",story_link:"Lire mon histoire →",
+st1:"Mon histoire avec la photographie a commencé quand j'étais enfant, avec un Petri Racer que je garde encore. Je ne savais pas m'en servir et beaucoup de photos étaient ratées, mais je n'arrêtais jamais de déclencher. Puis sont arrivés les appareils argentiques automatiques et, avec eux, mes premières vraies photos : j'ai compris que je l'avais dans le sang.",
+st2:"Avec les années, je suis entré dans le monde de la moto. Les compacts ne suivaient pas le rythme et ne me permettaient pas de faire les photos que j'avais en tête, alors je suis passé à un Canon 450D, puis au 7D avec le 28-300 L. Entre 2008 et 2012, je me suis fait un nom dans le milieu motard des Canaries en photographiant les motos depuis le fossé, allongé au ras du sol, en plein virage. Une technique risquée, non sans quelques frayeurs, qui m'a valu le surnom de \"el niño de la curva\" (le gamin du virage).",
+st3:"En 2014, la vie m'a mené sur d'autres chemins et j'ai dit adieu à mon matériel. Des années plus tard, en cherchant un appareil d'occasion, on m'a mis un 7D entre les mains… et je l'ai reconnu : c'était le mien, avec le support que j'avais moi-même collé sur l'écran. Je l'ai pris comme un signe. Aujourd'hui, je suis revenu à ce qui m'a toujours passionné : figer l'action en plein air, en lumière naturelle."},
+it:{back:"È TORNATO!",story_h:"La mia storia",story_link:"Leggi la mia storia →",
+st1:"La mia storia con la fotografia è iniziata da bambino, con una Petri Racer che conservo ancora. Non sapevo usarla e molte foto venivano male, ma non smettevo mai di scattare. Poi sono arrivate le macchine automatiche a pellicola e, con loro, le mie prime vere foto: lì ho capito che ce l'avevo nel sangue.",
+st2:"Con gli anni sono entrato nel mondo delle moto. Le compatte non reggevano il ritmo né mi permettevano di fare le foto che avevo in mente, così sono passato a una Canon 450D e poi alla 7D con il 28-300 L. Tra il 2008 e il 2012 mi sono fatto un nome nella scena motociclistica delle Canarie fotografando le moto da dentro il fosso, sdraiato a livello del suolo, in piena curva. Una tecnica rischiosa, non senza qualche spavento, che mi è valsa il soprannome \"el niño de la curva\" (il ragazzo della curva).",
+st3:"Nel 2014 la vita mi ha portato su altre strade e ho detto addio alla mia attrezzatura. Anni dopo, cercando una fotocamera usata, mi hanno messo in mano una 7D… e l'ho riconosciuta: era la mia, con il supporto che avevo incollato io stesso sullo schermo. L'ho preso come un segno. Oggi sono tornato a ciò che mi ha sempre appassionato: congelare l'azione all'aperto, con luce naturale."},
+pl:{back:"WRACA!",story_h:"Moja historia",story_link:"Przeczytaj moją historię →",
+st1:"Moja przygoda z fotografią zaczęła się w dzieciństwie, od aparatu Petri Racer, który wciąż mam. Nie umiałem go obsługiwać i wiele zdjęć wychodziło źle, ale nie przestawałem fotografować. Potem przyszły automatyczne aparaty na kliszę, a z nimi moje pierwsze prawdziwe zdjęcia: wtedy wiedziałem, że mam to we krwi.",
+st2:"Z czasem wszedłem w świat motocykli. Kompakty nie nadążały i nie pozwalały mi robić zdjęć, które miałem w głowie, więc przesiadłem się na Canona 450D, a później na 7D z obiektywem 28-300 L. W latach 2008–2012 wyrobiłem sobie nazwisko w kanaryjskim środowisku motocyklowym, fotografując motocykle z wnętrza przydrożnego rowu, leżąc na poziomie ziemi w samym środku zakrętu. Ryzykowna technika, nie bez kilku strachów, która przyniosła mi przydomek \"el niño de la curva\" (chłopak z zakrętu).",
+st3:"W 2014 roku życie poprowadziło mnie innymi drogami i pożegnałem się ze sprzętem. Lata później, szukając używanego aparatu, dostałem do rąk 7D… i rozpoznałem go: był mój, z uchwytem, który sam przykleiłem do ekranu. Uznałem to za znak. Dziś wróciłem do tego, co zawsze kochałem: zatrzymywania akcji w plenerze, w naturalnym świetle."},
+ro:{back:"SE ÎNTOARCE!",story_h:"Povestea mea",story_link:"Citește povestea mea →",
+st1:"Povestea mea cu fotografia a început în copilărie, cu un Petri Racer pe care îl păstrez și azi. Nu știam să-l folosesc și multe poze ieșeau prost, dar nu mă opream din fotografiat. Apoi au venit aparatele automate cu film și, odată cu ele, primele mele fotografii adevărate: atunci am știut că o am în sânge.",
+st2:"Cu anii, am intrat în lumea motocicletelor. Aparatele compacte nu țineau pasul și nu mă lăsau să fac pozele pe care le aveam în minte, așa că am trecut la un Canon 450D și, mai târziu, la 7D cu 28-300 L. Între 2008 și 2012 mi-am făcut un nume în comunitatea motocicliștilor din Canare fotografiind motocicletele din interiorul șanțului, întins la nivelul solului, chiar în mijlocul curbei. O tehnică riscantă, nu fără câteva sperieturi, care mi-a adus porecla \"el niño de la curva\" (băiatul din curbă).",
+st3:"În 2014 viața m-a dus pe alte drumuri și mi-am luat rămas bun de la echipament. Ani mai târziu, căutând un aparat la mâna a doua, mi s-a pus în mâini un 7D… și l-am recunoscut: era al meu, cu suportul pe care îl lipisem chiar eu pe ecran. Am luat-o ca pe un semn. Astăzi m-am întors la ceea ce m-a pasionat dintotdeauna: să surprind acțiunea în aer liber, în lumină naturală."},
+nl:{back:"IS TERUG!",story_h:"Mijn verhaal",story_link:"Lees mijn verhaal →",
+st1:"Mijn verhaal met fotografie begon als kind, met een Petri Racer die ik nog steeds heb. Ik wist niet hoe ik hem moest gebruiken en veel foto's mislukten, maar ik bleef fotograferen. Daarna kwamen de automatische filmcamera's en daarmee mijn eerste echte foto's: toen wist ik dat het in mijn bloed zat.",
+st2:"In de loop der jaren kwam ik in de motorwereld terecht. Compactcamera's konden het tempo niet bijhouden en lieten me niet de foto's maken die ik in mijn hoofd had, dus stapte ik over op een Canon 450D en later op de 7D met de 28-300 L. Tussen 2008 en 2012 maakte ik naam in de Canarische motorscene door motoren te fotograferen vanuit de berm, liggend op grondniveau, midden in de bocht. Een riskante techniek, niet zonder een paar schrikmomenten, die me de bijnaam \"el niño de la curva\" (de jongen uit de bocht) opleverde.",
+st3:"In 2014 bracht het leven me op andere wegen en nam ik afscheid van mijn uitrusting. Jaren later, op zoek naar een tweedehands camera, kreeg ik een 7D in handen… en ik herkende hem: het was de mijne, met de houder die ik zelf op het scherm had geplakt. Ik zag het als een teken. Vandaag ben ik terug bij wat ik altijd geweldig vond: actie buiten vastleggen, met natuurlijk licht."}
+};
+for(const k in N3)Object.assign(T[k],N3[k]);
+/* Eventos: se leen del archivo eventos.txt */
+let EVENTS=[];
+function renderEvents(){const today=new Date().toISOString().slice(0,10);
+ const fmt=d=>{try{return new Date(d+'T12:00').toLocaleDateString(L,{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}};
+ const fill=(id,arr)=>{const el=document.getElementById(id);el.innerHTML=arr.length?arr.map(e=>'<div class="ev"><time>'+fmt(e.d)+'</time><div>'+e.n+'<small>'+e.p+'</small></div></div>').join(''):'<div class="empty">'+T[L].ev_none+'</div>'};
+ fill('ev_next',EVENTS.filter(e=>e.d>=today).sort((a,b)=>a.d<b.d?-1:1));
+ fill('ev_done',EVENTS.filter(e=>e.d<today).sort((a,b)=>a.d<b.d?1:-1));}
+function parseEvents(t){EVENTS=t.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#')).map(l=>{const[d,n,p]=l.split('|').map(s=>(s||'').trim().replace(/[<>]/g,''));return{d,n,p}}).filter(e=>/^\d{4}-\d{2}-\d{2}$/.test(e.d));renderEvents();}
+fetch('eventos.txt').then(r=>r.ok?r.text():'').then(parseEvents).catch(()=>parseEvents(''));
+const plats=document.getElementById('plats');
+function renderPlats(){plats.innerHTML='';PLATFORMS.forEach(p=>{const d=document.createElement('div');d.className='card plat';
+ d.innerHTML='<b>'+p.name+'</b><span>'+T[L][p.type]+'</span><a class="btn" target="_blank" rel="noopener" href="'+p.url+'">'+T[L].find_btn+'</a>';plats.appendChild(d)})}
+const sel=document.getElementById('lang');let L='es';
+function setLang(l){L=T[l]?l:'en';document.documentElement.lang=L;sel.value=L;
+ document.querySelectorAll('[data-i]').forEach(e=>{const v=T[L][e.dataset.i];if(v)e.textContent=v});
+ try{localStorage.setItem('lang',L)}catch(e){} renderEmpty();renderPlats();if(typeof renderEvents=='function')renderEvents();}
+let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+const nav=(navigator.language||'es').slice(0,2);
+sel.onchange=()=>setLang(sel.value);
+document.getElementById('y').textContent=new Date().getFullYear();
+
+/* Tablón: lee la carpeta "galeria" del repositorio de GitHub */
+const REPO='franchumc-ui/frankyphoto';let photos=[];
+const grid=document.getElementById('grid');
+function renderEmpty(){if(!photos.length)grid.innerHTML='<div class="empty">'+T[L].gal_empty+'</div>'}
+fetch('https://api.github.com/repos/'+REPO+'/contents/galeria')
+ .then(r=>r.ok?r.json():[]).then(list=>{
+  photos=(Array.isArray(list)?list:[]).filter(f=>/\.(jpe?g|png|webp)$/i.test(f.name)).map(f=>f.name).sort().reverse();
+  if(!photos.length)return renderEmpty();
+  grid.innerHTML='';photos.forEach(n=>{const i=document.createElement('img');i.src='galeria/'+encodeURIComponent(n);i.alt=n;i.loading='lazy';i.onclick=()=>openLb(n);grid.appendChild(i)});
+  const m=location.hash.match(/^#foto=(.+)$/);if(m)openLb(decodeURIComponent(m[1]));
+ }).catch(renderEmpty);
+
+const lb=document.getElementById('lb');
+function openLb(n){const img=new URL('galeria/'+encodeURIComponent(n),location.href).href;
+ const link=location.origin+location.pathname+'#foto='+encodeURIComponent(n);const u=encodeURIComponent(link);
+ document.getElementById('lbimg').src=img;
+ sh_fb.href='https://www.facebook.com/sharer/sharer.php?u='+u;
+ sh_wa.href='https://wa.me/?text='+encodeURIComponent('FrankyPhoto · '+link);
+ sh_x.href='https://twitter.com/intent/tweet?text=FrankyPhoto&url='+u;
+ sh_pin.href='https://pinterest.com/pin/create/button/?url='+u+'&media='+encodeURIComponent(img);
+ sh_dl.href=img;sh_dl.setAttribute('download',n);
+ sh_cp.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(link);sh_cp.textContent=T[L].copied;setTimeout(()=>sh_cp.textContent=T[L].copy,1500)};
+ lb.classList.add('on');history.replaceState(null,'','#foto='+encodeURIComponent(n));}
+document.getElementById('lbx').onclick=()=>{lb.classList.remove('on');history.replaceState(null,'',location.pathname)};
+
+/* Formulario de presupuesto: abre el correo con el mensaje preparado */
+document.getElementById('form').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);
+ const body=['Nombre: '+f.get('name'),'Email: '+f.get('email'),'Evento: '+f.get('type'),'Fecha: '+f.get('date'),'Lugar: '+f.get('place'),'','Mensaje:',f.get('msg'),'','Idioma web: '+L].join('\n');
+ location.href='mailto:franchumc@gmail.com?subject='+encodeURIComponent('Presupuesto FrankyPhoto - '+f.get('name'))+'&body='+encodeURIComponent(body);};
+
+setLang(saved||(T[nav]?nav:'en'));
+</script>
+</body>
+</html>
