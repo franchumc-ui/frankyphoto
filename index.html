@@ -9,7 +9,9 @@
 <link rel="apple-touch-icon" href="img/icono-180.png">
 <meta property="og:title" content="FrankyPhoto">
 <meta property="og:description" content="Fotografía de deportes y eventos al aire libre con luz natural.">
-<meta property="og:image" content="img/portada.jpg">
+<meta property="og:image" content="https://frankyphoto.vercel.app/img/portada.jpg">
+<meta property="og:url" content="https://frankyphoto.vercel.app/">
+<meta property="og:type" content="website">
 <style>
 :root{--bg:#0e1013;--card:#171a1f;--line:#262a31;--text:#f3f3f3;--muted:#a3a9b3;--accent:#0037A6;--accent2:#3D74DB;--sheen:linear-gradient(135deg,#002E95 0%,#0037A6 45%,#2A5FC4 55%,#0037A6 70%,#002E95 100%)}
 *{box-sizing:border-box}
@@ -68,6 +70,8 @@ textarea{min-height:120px}
 .lb .acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
 .lb .acts a,.lb .acts button{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 14px;text-decoration:none;font:inherit;cursor:pointer}
 .lb .x{position:absolute;top:12px;right:16px;font-size:2rem;background:none;border:0;color:#fff;cursor:pointer}
+#up{position:fixed;right:16px;bottom:16px;z-index:40;width:52px;height:52px;border-radius:50%;border:2px solid var(--accent2);background:var(--sheen);color:#fff;font-size:1.6rem;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s}
+#up.on{opacity:1;pointer-events:auto}
 footer{text-align:center;color:var(--muted);font-size:.9rem;padding:28px 16px}
 </style>
 </head>
@@ -76,11 +80,11 @@ footer{text-align:center;color:var(--muted);font-size:.9rem;padding:28px 16px}
   <a class="logo" href="#">Franky<span>Photo</span></a>
   <nav>
     <a href="#about" data-i="nav_about"></a>
-    <a href="#story" data-i="story_h"></a>
     <a href="#services" data-i="nav_services"></a>
     <a href="#events" data-i="nav_events"></a>
     <a href="#gallery" data-i="nav_gallery"></a>
     <a href="#quote" data-i="nav_quote"></a>
+    <a href="#story" data-i="story_h"></a>
   </nav>
   <select id="lang" aria-label="Language">
     <option value="es">Español</option>
@@ -170,6 +174,8 @@ footer{text-align:center;color:var(--muted);font-size:.9rem;padding:28px 16px}
 </main>
 
 <footer>© <span id="y"></span> FrankyPhoto · Francisco Medina Castellano</footer>
+
+<button id="up" aria-label="Top" title="Top">↑</button>
 
 <div class="lb" id="lb">
   <button class="x" id="lbx" aria-label="close">×</button>
@@ -421,6 +427,8 @@ document.getElementById('form').onsubmit=e=>{e.preventDefault();const f=new Form
  const body=['Nombre: '+f.get('name'),'Email: '+f.get('email'),'Evento: '+f.get('type'),'Fecha: '+f.get('date'),'Lugar: '+f.get('place'),'','Mensaje:',f.get('msg'),'','Idioma web: '+L].join('\n');
  location.href='mailto:franchumc@gmail.com?subject='+encodeURIComponent('Presupuesto FrankyPhoto - '+f.get('name'))+'&body='+encodeURIComponent(body);};
 
+const up=document.getElementById("up");up.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+addEventListener("scroll",()=>up.classList.toggle("on",scrollY>500),{passive:true});
 setLang(saved||(T[nav]?nav:'en'));
 </script>
 </body>
